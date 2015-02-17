@@ -1,0 +1,17 @@
+Stream.unfold(
+	{999,999},
+	fn ({left,right}) ->
+		case {left,right} do
+			{100,100} -> nil
+			{left, 100} -> {{left,right},{left-1, left-1}}
+			{left,right} -> {{left,right}, {left,right-1}}
+		end
+	end
+) |>
+	Stream.map(fn ({left, right}) -> Integer.to_string(left*right) end) |>
+	Stream.filter(&( &1 == String.reverse(&1))) |>
+   	Stream.map(&(String.to_integer(&1)))|>
+	Enum.to_list |>
+	Enum.sort |>
+	Enum.fetch!(-1) |>
+	IO.puts
