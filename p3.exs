@@ -1,1 +1,1 @@
-IO.puts(Sieve.sieve(600851475143))
+PrimeFactorization.largest_prime(600851475143) |> IO.puts
